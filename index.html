@@ -481,14 +481,18 @@ body::before {
 
 .socials {
   margin-top: 2.5rem;
-  display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
-  font-family: 'Fraunces', serif; font-weight: 900; font-style: italic;
-  font-size: clamp(1.4rem, 2.3vw, 2rem); text-transform: uppercase;
+  display: flex; flex-wrap: nowrap; gap: 1rem; align-items: center;
 }
-.socials__lead { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: .8rem; font-weight: 400; font-style: normal; letter-spacing: .2em; text-transform: uppercase; margin-right: 1rem; }
-.socials a { position: relative; padding: 0 .3em; }
-.socials a:hover { color: var(--accent); text-decoration: line-through; text-decoration-color: var(--accent-2); }
-.socials .sep { color: var(--accent); }
+.socials__lead { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: .8rem; font-weight: 400; font-style: normal; letter-spacing: .2em; text-transform: uppercase; margin-right: .5rem; flex-shrink: 0; }
+.socials__icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px;
+  border: 1.5px solid var(--accent); border-radius: 8px;
+  color: var(--accent); text-decoration: none; flex-shrink: 0;
+  transition: background .2s ease, color .2s ease;
+}
+.socials__icon:hover { background: var(--accent); color: var(--bg); }
+.socials__icon svg { display: block; }
 
 /* ============================================================
    DATE
@@ -945,9 +949,25 @@ body::before {
 
   <div class="socials">
     <span class="socials__lead">↘ Seguimi:</span>
-    <a href="https://www.instagram.com/massimiliano_sonsogno/" target="_blank" rel="noopener">Instagram</a><span class="sep">·</span>
-    <a href="https://www.tiktok.com/@massimilianosonsogno" target="_blank" rel="noopener">TikTok</a><span class="sep">·</span>
-    <a href="https://www.youtube.com/@massimilianosonsogno9882" target="_blank" rel="noopener">YouTube</a>
+    <a class="socials__icon" href="https://www.instagram.com/massimiliano_sonsogno/" target="_blank" rel="noopener" aria-label="Instagram di Massimiliano Sonsogno">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+      </svg>
+    </a>
+    <a class="socials__icon" href="https://www.tiktok.com/@massimilianosonsogno" target="_blank" rel="noopener" aria-label="TikTok di Massimiliano Sonsogno">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="8" cy="17" r="3"/>
+        <path d="M11 17V5c3 0 6 2 6 5"/>
+      </svg>
+    </a>
+    <a class="socials__icon" href="https://www.youtube.com/@massimilianosonsogno9882" target="_blank" rel="noopener" aria-label="YouTube di Massimiliano Sonsogno">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/>
+        <path d="m10 15 5-3-5-3z"/>
+      </svg>
+    </a>
   </div>
 </section>
 
