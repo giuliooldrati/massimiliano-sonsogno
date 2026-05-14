@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Massimiliano Sonsogno — Artista · Comico · Scrittore · Informatico pentito</title>
+<meta name="description" content="Sito ufficiale di Massimiliano Sonsogno. Stand up comedy, date live, video, libro 'Briscola a chiamata'." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,900;1,9..144,600;1,9..144,900&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+<template id="__bundler_thumbnail" data-bg-color="#f0e2cf">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#f0e2cf" />
+    <g fill="#8a2a2a">
+      <ellipse cx="500" cy="540" rx="95" ry="70" transform="rotate(-18 500 540)"/>
+      <ellipse cx="720" cy="460" rx="95" ry="70" transform="rotate(-18 720 460)"/>
+      <rect x="588" y="220" width="22" height="340" />
+      <rect x="808" y="140" width="22" height="340" />
+      <path d="M 588 220 Q 700 180 808 140 L 808 200 Q 700 240 588 280 Z" />
+    </g>
+    <text x="600" y="700" text-anchor="middle"
+          font-family="Georgia, serif" font-style="italic" font-weight="900"
+          font-size="64" fill="#1f1410" letter-spacing="2">M. SONSOGNO</text>
+  </svg>
+</template>
+
+<style>
+/* ============================================================
+   TOKENS — palette (override-able via [data-palette])
+   Default: warm professional (cream + terracotta), in linea
+   con il riferimento lauraformenti.it.
+   ============================================================ */
+:root {
+  --bg:        #f1e7d2;   /* warm cream */
+  --bg-elev:   #e6d9b8;   /* cream più scuro per i card */
+  --accent:    #c4471f;   /* terracotta / burnt sienna */
+  --accent-2:  #b8852b;   /* warm ochre / mustard */
+  --text:      #2a1f15;   /* dark espresso */
+  --muted:     #7c6b54;   /* warm taupe */
+  --line:      #d6c8a8;   /* warm divider */
+  --shadow:    8px 8px 0 0 #2a1f15;
+  --topbar-bg: rgba(241,231,210,.88);
+}
+[data-palette="sepia"] {
+  --bg:#1a1410; --bg-elev:#241b14;
+  --accent:#d97441; --accent-2:#e8a857;
+  --text:#f1e7d2; --muted:#9c8a72; --line:#3a2c1e;
+  --shadow: 8px 8px 0 0 #0a0604;
+  --topbar-bg: rgba(26,20,16,.88);
+}
+[data-palette="bordeaux"] {
+  --bg:#f0e2cf; --bg-elev:#e3d3ba;
+  --accent:#8a2a2a; --accent-2:#b8852b;
+  --text:#1f1410; --muted:#6b5a44; --line:#c8b893;
+  --shadow: 8px 8px 0 0 #1f1410;
+  --topbar-bg: rgba(240,226,207,.88);
+}
+[data-palette="olive"] {
+  --bg:#f1ead2; --bg-elev:#e3dab8;
+  --accent:#5a6a2c; --accent-2:#c4471f;
+  --text:#1f1a10; --muted:#6e6b4e; --line:#cdbf95;
+  --shadow: 8px 8px 0 0 #1f1a10;
+  --topbar-bg: rgba(241,234,210,.88);
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*,*::before,*::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; transition: color .2s, background .2s; }
+a:focus-visible, button:focus-visible { outline: 2px dashed var(--accent); outline-offset: 4px; }
+button { font: inherit; cursor: pointer; }
+
+::selection { background: var(--accent); color: var(--bg); }
+
+/* Paper-grain caldo */
+body::before {
+  content:"";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(42,31,21,.035) 1px, transparent 1px);
+  background-size: 3px 3px;
+  z-index: 1;
+}
+
+/* ============================================================
+   TYPE
+   ============================================================ */
+.display { font-family: 'Fraunces', serif; font-weight: 900; font-style: italic; letter-spacing: -.02em; line-height: .88; }
+.mono    { font-family: 'JetBrains Mono', monospace; }
+.eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .78rem; letter-spacing: .25em; text-transform: uppercase; color: var(--muted); }
+
+/* ============================================================
+   TICKER
+   ============================================================ */
+.ticker {
+  position: relative;
+  overflow: hidden;
+  background: var(--accent);
+  color: var(--bg);
+  border-top: 2px solid var(--bg);
+  border-bottom: 2px solid var(--bg);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(1.2rem, 2.4vw, 2rem);
+  text-transform: uppercase;
+  padding: .55em 0;
+  white-space: nowrap;
+  z-index: 5;
+}
+.ticker__track {
+  display: inline-flex;
+  gap: 2.5rem;
+  padding-left: 2.5rem;
+  animation: ticker-scroll var(--ticker-speed, 38s) linear infinite;
+}
+.ticker__track span { display: inline-block; }
+.ticker--reverse .ticker__track { animation-direction: reverse; }
+.ticker--yellow { background: var(--accent-2); }
+.ticker--dark { background: var(--bg); color: var(--accent); border-color: var(--accent); }
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   TOPBAR (sticky, appears after hero)
+   ============================================================ */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .9rem 1.6rem;
+  background: var(--topbar-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  transform: translateY(-100%);
+  transition: transform .35s ease;
+}
+.topbar.is-visible { transform: translateY(0); }
+.topbar__logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: .02em;
+}
+.topbar__nav { display: flex; gap: 1.6rem; }
+.topbar__nav a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .78rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text);
+  position: relative;
+  padding: .35rem 0;
+}
+.topbar__nav a:hover { color: var(--accent); }
+.topbar__nav a::after {
+  content:""; position:absolute; left:0; right:0; bottom:0;
+  height:2px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .25s ease;
+}
+.topbar__nav a:hover::after { transform: scaleX(1); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  padding: 1.6rem 1.6rem 0;
+  isolation: isolate;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* Foto di scena sul retro — copre tutta la hero, opacizzata */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("img/hero-bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center 40%;
+  background-size: cover;
+  opacity: .22;
+  filter: grayscale(1) contrast(1.05);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
+}
+@media (max-width: 900px) {
+  .hero__bg { background-position: center; opacity: .18; }
+}
+.hero__nav {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 2.5vw, 2.2rem);
+  align-items: center;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  text-transform: uppercase;
+  letter-spacing: .01em;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.hero__nav a {
+  position: relative;
+  padding: .25rem 0;
+}
+.hero__nav a + a::before {
+  content: "·"; color: var(--accent); margin-right: clamp(1rem, 2.5vw, 2.2rem);
+  margin-left: calc(-1 * clamp(1rem, 2.5vw, 2.2rem) - .5ch);
+  display: inline-block;
+}
+.hero__nav a:hover { color: var(--accent); transform: rotate(-1.5deg); }
+.hero__nav a { transition: color .2s, transform .2s; display:inline-block; }
+.hero__nav .here {
+  text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 6px;
+}
+
+.hero__core {
+  flex: 1;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 4vh 0;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.hero__tag {
+  position: absolute;
+  top: 6vh; right: 4vw;
+  transform: rotate(8deg);
+  background: var(--accent);
+  color: var(--bg);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: .9rem;
+  padding: .35rem .7rem;
+  letter-spacing: .1em;
+}
+.hero__tag.tl {
+  top: 4vh; left: 4vw; right: auto; transform: rotate(-6deg);
+  background: var(--accent-2); color: var(--bg);
+}
+.hero__title {
+  font-size: clamp(3.4rem, 12vw, 11.5rem);
+  margin: 0;
+  text-transform: uppercase;
+}
+.hero__title .ast {
+  color: var(--accent);
+  display: inline-block;
+  animation: spin 9s linear infinite;
+  transform-origin: 50% 55%;
+}
+.hero__title .name { display: inline-block; }
+.hero__title .name:hover { color: var(--accent); }
+.hero__title .row { display: block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.hero__sub {
+  margin: 1.8rem auto 0;
+  max-width: 60ch;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(.78rem, 1.1vw, .98rem);
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero__sub b { color: var(--text); font-weight: 700; }
+
+.hero__ctas {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+  margin-top: 2.4rem;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  padding: 1rem 1.4rem;
+  background: transparent;
+  color: var(--text);
+  border: 2px solid var(--text);
+  transition: all .2s ease;
+}
+.btn--accent { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.btn:hover { background: var(--text); color: var(--bg); border-color: var(--text); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--accent); }
+.btn--accent:hover { background: var(--text); color: var(--bg); border-color: var(--text); box-shadow: 4px 4px 0 var(--accent-2); }
+
+/* asterisk swirl bottom */
+.hero__footnote {
+  position: relative;
+  z-index: 1;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+.hero__footnote .blob { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; display:inline-block; animation: blink 1.4s infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+
+/* ============================================================
+   GENERIC SECTION
+   ============================================================ */
+.section {
+  position: relative;
+  padding: clamp(4rem, 9vw, 8rem) clamp(1.6rem, 5vw, 4rem);
+  z-index: 2;
+}
+.section__head {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: 2rem; margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1.5rem;
+}
+.section__head h2 {
+  font-family: 'Fraunces', serif; font-weight: 900; font-style: italic;
+  font-size: clamp(2.6rem, 7vw, 6.5rem);
+  letter-spacing: -.02em; line-height: .9;
+  margin: 0; text-transform: uppercase;
+}
+.section__head h2 .accent { color: var(--accent); }
+.section__head .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .8rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--muted); text-align: right;
+}
+
+/* ============================================================
+   BIO + GALLERY
+   ============================================================ */
+.bio {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+.bio__text p { font-size: clamp(1rem, 1.18vw, 1.18rem); line-height: 1.55; margin: 0 0 1.2rem; }
+.bio__text p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif; font-weight: 900; font-style: italic;
+  font-size: 4.6em; float: left; line-height: .8; padding: .08em .12em 0 0;
+  color: var(--accent);
+}
+.bio__text em { color: var(--accent-2); font-style: italic; font-weight: 700; }
+.bio__text b  { background: var(--accent); color: var(--bg); padding: 0 .25em; font-weight: 700; }
+.bio__text .mono-hit { font-family: 'JetBrains Mono', monospace; background: var(--bg-elev); color: var(--accent); padding: 0 .35em; }
+
+.gallery {
+  position: sticky; top: 90px;
+}
+.gallery__frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--bg-elev);
+  border: 2px solid var(--text);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.gallery__frame img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: 0;
+  transition: opacity .8s ease;
+  filter: contrast(1.05) saturate(.9);
+}
+.gallery__frame img.active { opacity: 1; }
+.gallery__corner {
+  position: absolute; top: 12px; left: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem; letter-spacing: .2em;
+  color: var(--bg);
+  background: var(--accent-2);
+  padding: .2rem .5rem;
+  z-index: 2;
+}
+.gallery__sticker {
+  position: absolute; bottom: -22px; right: -22px;
+  background: var(--accent); color: var(--bg);
+  font-family: 'Fraunces', serif; font-weight: 900; font-style: italic;
+  font-size: 1.4rem; text-transform: uppercase;
+  padding: .7rem 1rem;
+  transform: rotate(-7deg);
+  z-index: 3;
+  box-shadow: 4px 4px 0 var(--text);
+}
+.gallery__caption {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 1.6rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .8rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--muted);
+}
+.gallery__dots { display: flex; gap: .5rem; }
+.gallery__dots span {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--line); transition: background .3s;
+}
+.gallery__dots span.active { background: var(--accent); }
+
+/* ============================================================
+   VIDEO
+   ============================================================ */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.2rem, 2.5vw, 2.4rem);
+}
+.video-wrapper {
+  position: relative;
+  background: var(--bg-elev);
+  border: 2px solid var(--accent);
+  box-shadow: var(--shadow);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.video-wrapper:hover { transform: translate(-3px,-3px); box-shadow: 12px 12px 0 var(--accent-2); }
+.video-wrapper__media {
+  aspect-ratio: 16 / 9;
+  position: relative; overflow: hidden;
+}
+.video-wrapper iframe,
+.video-wrapper__placeholder {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  border: 0;
+}
+.video-wrapper__placeholder {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: .8rem;
+  background:
+    repeating-linear-gradient(45deg, var(--bg-elev) 0 12px, transparent 12px 24px),
+    var(--bg);
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .75rem; letter-spacing: .2em; text-transform: uppercase;
+}
+.video-wrapper__placeholder .play {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--accent); color: var(--bg);
+  display:flex; align-items:center; justify-content:center;
+  font-size: 1.6rem;
+}
+.video-wrapper__caption {
+  display: flex; justify-content: space-between;
+  padding: .9rem 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .78rem; letter-spacing: .15em; text-transform: uppercase;
+  border-top: 2px solid var(--accent);
+}
+.video-wrapper__caption span:last-child { color: var(--accent); }
+
+.socials {
+  margin-top: 2.5rem;
+  display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
+  font-family: 'Fraunces', serif; font-weight: 900; font-style: italic;
+  font-size: clamp(1.4rem, 2.3vw, 2rem); text-transform: uppercase;
+}
+.socials__lead { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: .8rem; font-weight: 400; font-style: normal; letter-spacing: .2em; text-transform: uppercase; margin-right: 1rem; }
+.socials a { position: relative; padding: 0 .3em; }
+.socials a:hover { color: var(--accent); text-decoration: line-through; text-decoration-color: var(--accent-2); }
+.socials .sep { color: var(--accent); }
+
+/* ============================================================
+   DATE
+   ============================================================ */
+.date-list { display: flex; flex-direction: column; }
+.date-row {
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  align-items: center; gap: 2rem;
+  padding: 1.6rem 1.2rem;
+  border-top: 1px solid var(--line);
+  transition: background .2s ease, transform .2s ease, padding .2s ease;
+  position: relative;
+}
+.date-list .date-row:last-child { border-bottom: 1px solid var(--line); }
+.date-row:hover {
+  background: var(--accent);
+  color: var(--bg);
+  transform: translateX(8px);
+  padding-left: 1.6rem;
+}
+.date-row:hover .date-row__city small,
+.date-row:hover .date-row__date { color: var(--bg); }
+.date-row__date {
+  font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  color: var(--accent);
+  letter-spacing: -.01em;
+}
+.date-row__city {
+  font-family: 'Fraunces', serif; font-weight: 900; font-style: italic;
+  font-size: clamp(1.4rem, 2.4vw, 2.2rem);
+  text-transform: uppercase; line-height: 1;
+}
+.date-row__city small {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-style: normal; font-weight: 400;
+  font-size: .8rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--muted);
+  margin-top: .35rem;
+}
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .78rem; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  padding: .8rem 1.1rem;
+  border: 2px solid currentColor;
+  white-space: nowrap;
+}
+.tag--ticket  { color: var(--accent-2); }
+.tag--free    { color: var(--text); }
+.tag--sold    { color: var(--muted); text-decoration: line-through; }
+.date-row:hover .tag { color: var(--bg); border-color: var(--bg); background: var(--bg); color: var(--accent); }
+
+/* ============================================================
+   CONTATTI
+   ============================================================ */
+.contact {
+  text-align: center;
+}
+.contact__title {
+  font-family: 'Fraunces', serif; font-weight: 900; font-style: italic;
+  font-size: clamp(2.6rem, 7.5vw, 7rem);
+  line-height: .95; letter-spacing: -.02em;
+  text-transform: uppercase;
+  margin: 0 0 1.5rem;
+}
+.contact__title .v { display: inline-block; }
+.contact__title .v:nth-child(odd)  { color: var(--text); }
+.contact__title .v:nth-child(even) { color: var(--accent); }
+.contact__title .sep {
+  color: var(--accent-2); margin: 0 .25em; display:inline-block;
+}
+.contact__lead {
+  max-width: 56ch; margin: 0 auto 3rem;
+  font-style: italic; font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  color: var(--muted);
+}
+.contact__lead em { color: var(--text); font-style: italic; }
+
+.contact__boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.2rem, 2.5vw, 2.4rem);
+  max-width: 980px; margin: 0 auto;
+}
+.contact__box {
+  display: flex; flex-direction: column; gap: 1.4rem;
+  padding: 2.4rem;
+  border: 3px solid var(--accent);
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  transition: all .2s ease;
+  position: relative;
+}
+.contact__box:hover {
+  background: var(--accent);
+  color: var(--bg);
+  transform: translate(-4px,-4px);
+  box-shadow: 8px 8px 0 var(--text);
+}
+.contact__box .eyebrow { color: var(--accent); transition: color .2s; }
+.contact__box:hover .eyebrow { color: var(--bg); }
+.contact__box .label {
+  font-family: 'Fraunces', serif; font-weight: 900; font-style: italic;
+  font-size: clamp(2rem, 3.6vw, 3.4rem);
+  text-transform: uppercase; line-height: .9;
+}
+.contact__box .value {
+  font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  font-size: clamp(1.05rem, 1.8vw, 1.5rem);
+  word-break: break-all;
+}
+.contact__box .icon {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+.contact__box .icon svg { width: 22px; height: 22px; }
+
+.contact__predica {
+  margin-top: 3rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .85rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--muted);
+}
+.contact__predica strong { color: var(--accent); }
+
+/* ============================================================
+   EXTRA — Briscola a chiamata
+   ============================================================ */
+.extra {
+  position: relative;
+  padding: clamp(5rem, 10vw, 9rem) clamp(1.6rem, 5vw, 4rem);
+  overflow: hidden;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 12% 15%, rgba(196,71,31,.22), transparent 55%),
+    radial-gradient(ellipse at 88% 85%, rgba(184,133,43,.30), transparent 60%),
+    var(--bg-elev);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.extra__inner {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(240px, 380px) 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+  max-width: 1300px; margin: 0 auto;
+}
+
+/* COVER — foto reale del libro */
+.extra__cover {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  background: var(--bg);
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow:
+    16px 16px 0 var(--accent),
+    0 28px 60px rgba(31,20,16,.25);
+  transform: rotate(-1.5deg);
+  transition: transform .35s ease;
+}
+.extra__cover:hover { transform: rotate(0deg) translateY(-4px); }
+.extra__cover img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
+}
+
+.extra__body { display: flex; flex-direction: column; gap: 1.6rem; }
+.extra__body .eyebrow {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: .85rem;
+  letter-spacing: .3em;
+}
+
+.extra__title {
+  font-family: 'Fraunces', serif; font-weight: 900; font-style: italic;
+  font-size: clamp(2.6rem, 6.5vw, 6rem);
+  line-height: .9; letter-spacing: -.02em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--text);
+}
+.extra__title .ast { color: var(--accent); display: inline-block; }
+
+.extra__meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .9rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text);
+  font-weight: 500;
+  margin: 0;
+}
+.extra__meta b { color: var(--accent); font-weight: 700; }
+
+.extra__synopsis {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  line-height: 1.65;
+  color: var(--text);
+  max-width: 62ch;
+}
+.extra__synopsis em.placeholder {
+  display: block;
+  font-style: italic;
+  color: var(--text);
+  border-left: 4px solid var(--accent);
+  background: rgba(255,255,255,.55);
+  padding: 1.1rem 1.2rem;
+  font-weight: 500;
+}
+
+.extra__dates {
+  margin-top: .5rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.6rem;
+}
+.extra__dates h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .82rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1.1rem;
+  font-weight: 700;
+}
+.extra__dates ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .55rem; }
+.extra__dates li {
+  display: flex; gap: 1.2rem; align-items: baseline;
+  padding: .85rem 1rem;
+  border-left: 4px solid var(--accent-2);
+  background: rgba(255,255,255,.55);
+  transition: all .2s;
+}
+.extra__dates li:hover {
+  background: var(--accent-2); color: var(--bg);
+  transform: translateX(4px);
+}
+.extra__dates li:hover .d { color: var(--bg); }
+.extra__dates li .d {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent); font-weight: 700;
+  font-size: .95rem;
+  min-width: 100px;
+}
+.extra__dates li .p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem; font-weight: 500;
+}
+
+.extra__buy { align-self: flex-start; margin-top: 1.4rem; }
+
+.extra__microbio {
+  margin-top: 2.6rem;
+  max-width: 72ch;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem; line-height: 1.7;
+  color: var(--text);
+  border-top: 1px dashed var(--line);
+  padding-top: 1.4rem;
+}
+.extra__microbio b { color: var(--accent); font-weight: 700; }
+.extra__microbio em { color: var(--text); font-style: italic; font-weight: 600; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  position: relative; z-index: 2;
+  padding: 2.5rem 1.6rem;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+.footer b { color: var(--accent); }
+
+/* ============================================================
+   TWEAKS HOST
+   ============================================================ */
+#tweaks-root { position: fixed; bottom: 16px; right: 16px; z-index: 100; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .topbar { padding: .7rem 1rem; }
+  .topbar__nav { gap: .9rem; }
+  .topbar__nav a { font-size: .65rem; letter-spacing: .15em; }
+  .topbar__logo { font-size: .9rem; }
+
+  .hero__nav { font-size: 1rem; gap: .9rem; padding-bottom: .8rem; }
+  .hero__nav a + a::before { margin-right: .9rem; margin-left: calc(-0.9rem - .5ch); }
+  .hero__tag, .hero__tag.tl { display: none; }
+  .hero__title { font-size: clamp(2.6rem, 14vw, 6rem); }
+  .hero__core { padding: 6vh 0 4vh; }
+
+  .bio { grid-template-columns: 1fr; }
+  .gallery { position: static; max-width: 460px; margin: 0 auto; }
+
+  .video-grid { grid-template-columns: 1fr; }
+  .date-row { grid-template-columns: 1fr; gap: .4rem; padding: 1.2rem .6rem; }
+  .date-row:hover { transform: none; padding-left: .6rem; }
+  .tag { justify-self: start; }
+
+  .contact__boxes { grid-template-columns: 1fr; }
+  .extra__inner { grid-template-columns: 1fr; }
+  .extra__cover { max-width: 280px; margin: 0 auto; }
+
+  .section__head { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .section__head .meta { text-align: left; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero__footnote .blob { animation: none !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body data-palette="default">
+
+<!-- ============================================================
+     STICKY TOPBAR (appare dopo lo scroll della hero)
+     ============================================================ -->
+<header class="topbar" id="topbar" aria-label="Navigazione fissa">
+  <a href="#home" class="topbar__logo">MASSIMILIANO SONSOGNO</a>
+  <nav class="topbar__nav" aria-label="Sezioni">
+    <a href="#home">Home</a>
+    <a href="#video">Video</a>
+    <a href="#date">Date</a>
+    <a href="#contatti">Contatti</a>
+    <a href="#extra">Extra</a>
+  </nav>
+</header>
+
+<!-- ============================================================
+     HERO / HOME
+     ============================================================ -->
+<section class="hero" id="home">
+  <div class="hero__bg" aria-hidden="true"></div>
+
+  <nav class="hero__nav" aria-label="Navigazione principale">
+    <a href="#home" class="here">Home</a>
+    <a href="#video">Video</a>
+    <a href="#date">LIVE</a>
+    <a href="#contatti">Contatti</a>
+    <a href="#extra">Extra</a>
+  </nav>
+
+  <div class="hero__core">
+    <h1 class="display hero__title">
+      <span class="row"><span class="name">Massimiliano</span></span>
+      <span class="row"><span class="name">Sonsogno</span></span>
+    </h1>
+
+    <p class="hero__sub">
+      <b>Artista</b> · <b>Comico</b> · <b>Scrittore</b> · <b>Musicista</b>
+    </p>
+
+    <div class="hero__ctas">
+      <a href="#date" class="btn btn--accent">Prossimi live ↓</a>
+      <a href="#video" class="btn">▶ Guarda i video</a>
+    </div>
+  </div>
+
+  <div class="hero__footnote">
+    <span></span>
+    <span>
+</span>
+  </div>
+</section>
+
+<!-- (ticker rimosso su richiesta utente) -->
+
+<!-- ============================================================
+     BIO + GALLERY
+     ============================================================ -->
+<section class="section" id="bio">
+  <div class="section__head">
+    <h2>Chi è il <span class="accent">Maestro</span><br/>Sonsogno?</h2>
+    <div class="meta">↘ §01 / BIO<br/>scroll for dirt</div>
+  </div>
+
+  <div class="bio">
+    <div class="bio__text">
+      <p>Massimiliano Sonsogno <em>nasce, cresce, corre</em>. Massimiliano Sonsogno nasce controvoglia a metà degli anni 80 <em>che non è il 40</em>.</p>
+
+      <p>Prende, come usanza, il cognome dal padre e il nome della madre. Cresce all'interno di quella che potremmo definire una famiglia cristiana. Nel senso che passa i primi sei anni della vita avvolto in una rivista dal chiaro orientamento religioso.</p>
+
+      <p>È l'unica persona al mondo ad avere il <b>DASPO da ogni pescheria</b>, ma questa storia puzza.</p>
+
+      <p>Massimiliano Sonsogno da anni ispira politici e fabbri di ogni latitudine e di ogni gratitudine. Da sempre <em>inspira a volte espira</em>, fortunatamente. Espira ma soprattutto spera che le sue battute vi facciano ridere, ridere ridere ancora ora la guerra paura non fa brucian le divise dentro il fuoco la sera brucia nella gola vino a sazietà.</p>
+
+      <p>Si laurea in informatica con una tesi con un titolo che ammicca alla comunità LGBT: <b>binario o non binario?</b> L'autore decide di iniziare il suo lavoro di tesi con una frase fortissima di cui è ormai celebre l'incipit: <span class="mono-hit" style="opacity: 1">100001 100</span>.</p>
+
+      <p>Pubblica un libro scritto a quattro mani con altre due persone. Voi direte: dovrebbero essere sei mani. Purtroppo, <em>le altre due persone sono invalide e hanno una mano a testa</em>.</p>
+    </div>
+
+    <aside class="gallery" aria-label="Galleria foto">
+      <div class="gallery__frame" id="gallery">
+        <img src="img/max1.jpg" alt="Massimiliano Sonsogno con cono gelato" class="active" />
+        <img src="img/max2.jpg" alt="Massimiliano Sonsogno con cilindro e chitarra" />
+        <img src="img/max3.jpg" alt="Massimiliano Sonsogno con sprayer azzurro" />
+        <img src="img/max4.jpg" alt="Massimiliano Sonsogno con maschera delle tartarughe ninja" />
+        <img src="img/max5.jpg" alt="Massimiliano Sonsogno con scontrino" />
+      </div>
+      <div class="gallery__caption">
+        <span>↘ in posa · 5 scatti, 0 dignità</span>
+        <div class="gallery__dots" id="galleryDots" aria-hidden="true">
+          <span class="active"></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- (ticker rimosso) -->
+
+<!-- ============================================================
+     VIDEO
+     ============================================================ -->
+<section class="section" id="video">
+  <div class="section__head">
+    <h2>i miei <span class="accent">video</span></h2>
+    <div class="meta">↘ §02 / VIDEO<br/>2 clip · YouTube</div>
+  </div>
+
+  <div class="video-grid">
+    <article class="video-wrapper">
+      <div class="video-wrapper__media">
+        <iframe src="https://www.youtube.com/embed/vFoGlQ3MY1A" title="Massimiliano Sonsogno — video 01" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <div class="video-wrapper__caption">
+        <span>Massimiliano Sonsogno · video 01</span>
+        <span>YouTube</span>
+      </div>
+    </article>
+
+    <article class="video-wrapper">
+      <div class="video-wrapper__media">
+        <iframe src="https://www.youtube.com/embed/UwakgdRij7A" title="Massimiliano Sonsogno — video 02" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <div class="video-wrapper__caption">
+        <span>Massimiliano Sonsogno · video 02</span>
+        <span>YouTube</span>
+      </div>
+    </article>
+  </div>
+
+  <div class="socials">
+    <span class="socials__lead">↘ Seguimi:</span>
+    <a href="https://www.instagram.com/massimiliano_sonsogno/" target="_blank" rel="noopener">Instagram</a><span class="sep">·</span>
+    <a href="https://www.tiktok.com/@massimilianosonsogno" target="_blank" rel="noopener">TikTok</a><span class="sep">·</span>
+    <a href="https://www.youtube.com/@massimilianosonsogno9882" target="_blank" rel="noopener">YouTube</a>
+  </div>
+</section>
+
+<!-- (ticker rimosso) -->
+
+<!-- ============================================================
+     DATE
+     ============================================================ -->
+<section class="section" id="date">
+  <div class="section__head">
+    <h2>prossime <span class="accent">date</span></h2>
+    <div class="meta">↘ §03 / LIVE 2026<br/>5 serate confermate</div>
+  </div>
+
+  <div class="date-list" role="list">
+    <a class="date-row" href="#" role="listitem" aria-label="14 giugno 2026, Milano, Zelig Cabaret, biglietti">
+      <span class="date-row__date">14.06.26</span>
+      <span class="date-row__city">Milano<small>Zelig Cabaret · ore 21:30</small></span>
+      <span class="tag tag--ticket">Biglietti →</span>
+    </a>
+    <a class="date-row" href="#" role="listitem" aria-label="22 giugno 2026, Torino, Off Topic, biglietti">
+      <span class="date-row__date">22.06.26</span>
+      <span class="date-row__city">Torino<small>Off Topic · ore 22:00</small></span>
+      <span class="tag tag--ticket">Biglietti →</span>
+    </a>
+    <a class="date-row" href="#" role="listitem" aria-label="5 luglio 2026, Voghera, Garpez Festival, ingresso libero">
+      <span class="date-row__date">05.07.26</span>
+      <span class="date-row__city">Voghera<small>Garpez Festival · ore 21:00</small></span>
+      <span class="tag tag--free">Ingresso libero</span>
+    </a>
+    <a class="date-row" href="#" role="listitem" aria-label="19 luglio 2026, Genova, Teatro Altrove, sold out">
+      <span class="date-row__date">19.07.26</span>
+      <span class="date-row__city">Genova<small>Teatro Altrove · ore 21:30</small></span>
+      <span class="tag tag--sold">Sold Out</span>
+    </a>
+    <a class="date-row" href="#" role="listitem" aria-label="8 settembre 2026, Roma, Monk Club, biglietti">
+      <span class="date-row__date">08.09.26</span>
+      <span class="date-row__city">Roma<small>Monk Club · ore 22:00</small></span>
+      <span class="tag tag--ticket">Biglietti →</span>
+    </a>
+  </div>
+</section>
+
+<!-- (ticker rimosso) -->
+
+<!-- ============================================================
+     CONTATTI
+     ============================================================ -->
+<section class="section contact" id="contatti">
+  <h2 class="contact__title">
+    <span class="v">Scrivi</span><span class="sep">·</span><span class="v">Parla</span><span class="sep">·</span><span class="v">Chiama</span><span class="sep">·</span><span class="v">Sogna</span><span class="sep">·</span><span class="v">Spiegami</span>
+  </h2>
+
+  <p class="contact__lead">
+    Per <em>serate di cabaret e stand up comedy</em>, concerti, festival, club, collaborazioni, presentazioni.
+  </p>
+
+  <div class="contact__boxes">
+    <a class="contact__box" href="tel:+39000000000" aria-label="Chiama Massimiliano Sonsogno">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.95.36 1.88.7 2.77a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.31-1.31a2 2 0 0 1 2.11-.45c.89.34 1.82.57 2.77.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="eyebrow">
+</div>
+        <div class="label">Telefono</div>
+      </div>
+      <div class="value">+39 3707040209</div>
+    </a>
+
+    <a class="contact__box" href="mailto:_____@_____.it" aria-label="Scrivi a Massimiliano Sonsogno">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m2 6 10 7L22 6"/>
+        </svg>
+      </div>
+      <div>
+        <div class="eyebrow">
+</div>
+        <div class="label">Mail</div>
+      </div>
+      <div class="value" style="font-size: 2px">massimiliano.sonsogno@gmail.com</div>
+    </a>
+  </div>
+
+  <p class="contact__predica">↘ TELEFONO O MAIL. IN CASO CONTRARIO CITOFONATE. ↙</p>
+</section>
+
+<!-- (ticker rimosso) -->
+
+<!-- ============================================================
+     EXTRA — Briscola a chiamata
+     ============================================================ -->
+<section class="extra" id="extra">
+  <div class="extra__inner">
+    <div class="extra__cover">
+      <img src="img/briscola-cover.jpg" alt="Cover del romanzo Briscola a chiamata di Massimiliano Sonsogno" />
+    </div>
+
+    <div class="extra__body">
+      <span class="eyebrow">↘ Il romanzo</span>
+      <h2 class="extra__title">
+        Briscola<br/>a chiamata
+      </h2>
+      <p class="extra__meta">
+        Romanzo · 2025 · <b>Editore Placeholder</b> · pp. 240 · 4 mani (di cui 2 reali)
+      </p>
+
+      <div class="extra__synopsis">
+        <em class="placeholder">
+          [ Inserire qui la sinossi di "Briscola a chiamata". Spazio previsto: 120–180 parole. Tono coerente con la biografia: surreale, autoironico, con frasi che virano in direzioni inaspettate. ]
+        </em>
+      </div>
+
+      <div class="extra__dates">
+        <h3>↘ Altre date · presentazioni libro</h3>
+        <ul>
+          <li><span class="d">12.06.26</span><span class="p">Libreria <b>Verso</b>, Milano · ore 18:30</span></li>
+          <li><span class="d">28.06.26</span><span class="p"><b>Festivaletteratura</b>, Mantova · piazza Sordello, ore 19:00</span></li>
+          <li><span class="d">15.10.26</span><span class="p"><b>BookCity</b>, Milano · Castello Sforzesco</span></li>
+        </ul>
+      </div>
+
+      <a class="btn btn--accent extra__buy" href="#" target="_blank" rel="noopener">Acquista il libro →</a>
+
+      <p class="extra__microbio">
+        ↘ <b>Sonsogno scrittore</b> — Pubblica racconti su riviste che non leggete e una rubrica fissa su un giornale che non esiste. <em>Briscola a chiamata</em> è il suo primo romanzo lungo. <b>Per le presentazioni, telefono o mail e pedalare !!</b>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- (ticker finale rimosso) -->
+
+<footer class="footer">
+  © 2026 · <b>Massimiliano Sonsogno</b> · Sito non-corporate, non-newsletter, non-tracking · <a href="#home">↑ torna su</a>
+</footer>
+
+<!-- ============================================================
+     TWEAKS PANEL HOST
+     ============================================================ -->
+<div id="tweaks-root"></div>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script>
+/* --------------------------------------------------------------
+   1) GALLERY — cross-fade ogni 5s
+   -------------------------------------------------------------- */
+(function gallery() {
+  const root  = document.getElementById('gallery');
+  if (!root) return;
+  const imgs  = root.querySelectorAll('img');
+  const dots  = document.querySelectorAll('#galleryDots span');
+  const corner = root.querySelector('.gallery__corner');
+  let i = 0;
+  const total = imgs.length;
+  setInterval(() => {
+    imgs[i].classList.remove('active');
+    dots[i] && dots[i].classList.remove('active');
+    i = (i + 1) % total;
+    imgs[i].classList.add('active');
+    dots[i] && dots[i].classList.add('active');
+    if (corner) corner.textContent = `FOTO 0${i+1}/0${total}`;
+  }, 5000);
+})();
+
+/* --------------------------------------------------------------
+   2) TOPBAR — appare dopo lo scroll della hero
+   -------------------------------------------------------------- */
+(function topbar() {
+  const bar = document.getElementById('topbar');
+  const hero = document.getElementById('home');
+  if (!bar || !hero) return;
+  let ticking = false;
+  function update() {
+    const heroBottom = hero.getBoundingClientRect().bottom;
+    if (heroBottom < 40) bar.classList.add('is-visible');
+    else                 bar.classList.remove('is-visible');
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+  update();
+})();
+
+/* --------------------------------------------------------------
+   3) TWEAKS — palette + velocità ticker
+   --------------------------------------------------------------
+   I default sono fra i marker EDITMODE-BEGIN/END (un blocco JSON).
+   -------------------------------------------------------------- */
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "palette": "bordeaux",
+  "tickerSpeed": 38,
+  "asterisksSpin": true
+}/*EDITMODE-END*/;
+
+(function tweaks() {
+  const state = { ...TWEAK_DEFAULTS };
+
+  // apply on load (in caso la persistenza abbia toccato i default)
+  applyAll();
+
+  function applyAll() {
+    document.body.setAttribute('data-palette', state.palette);
+    document.documentElement.style.setProperty('--ticker-speed', state.tickerSpeed + 's');
+    // (asterischi rotanti rimossi)
+  }
+
+  function persist(patch) {
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: patch }, '*');
+  }
+
+  function buildUI() {
+    const host = document.getElementById('tweaks-root');
+    host.innerHTML = `
+      <style>
+        .twk {
+          width: 280px; background: #14110d; color: #f1e7d2;
+          border: 1px solid #2a2218; box-shadow: 0 12px 40px rgba(0,0,0,.5);
+          font-family: 'JetBrains Mono', monospace; font-size: .78rem;
+          padding: 14px; border-radius: 4px;
+        }
+        .twk__head { display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px; }
+        .twk__title { letter-spacing: .2em; text-transform: uppercase; color: #ff4a1f; font-weight: 700; }
+        .twk__close { background: transparent; border: 1px solid #2a2218; color: #f1e7d2; width: 24px; height: 24px; line-height: 0; }
+        .twk__row { margin: 10px 0; }
+        .twk__label { display: block; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: #8a7c66; margin-bottom: 6px; }
+        .twk__pals { display:flex; gap: 6px; }
+        .twk__pal {
+          flex:1; padding: 8px 0; border: 1px solid #2a2218; background: #0c0a08; color: #f1e7d2;
+          font-family: inherit; font-size: .65rem; letter-spacing: .15em; text-transform: uppercase;
+          cursor: pointer; transition: all .2s;
+        }
+        .twk__pal[aria-pressed="true"] { border-color: #ff4a1f; color: #ff4a1f; }
+        .twk__pal:hover { border-color: #f5d020; }
+        .twk__slider { width: 100%; }
+        .twk__toggle { display:flex; align-items:center; gap: 8px; cursor: pointer; }
+        .twk__toggle input { accent-color: #ff4a1f; }
+      </style>
+      <div class="twk" role="dialog" aria-label="Tweaks">
+        <div class="twk__head">
+          <span class="twk__title">↘ Tweaks</span>
+          <button class="twk__close" type="button" aria-label="Chiudi">×</button>
+        </div>
+
+        <div class="twk__row">
+          <span class="twk__label">Palette</span>
+          <div class="twk__pals" data-key="palette">
+            <button class="twk__pal" data-val="default">Crema</button>
+            <button class="twk__pal" data-val="sepia">Sepia</button>
+            <button class="twk__pal" data-val="bordeaux">Bordeaux</button>
+            <button class="twk__pal" data-val="olive">Oliva</button>
+          </div>
+        </div>
+
+        <div class="twk__row">
+          <span class="twk__label">Velocità ticker · <span id="twkSpeedVal">${state.tickerSpeed}s</span></span>
+          <input class="twk__slider" type="range" min="10" max="80" step="1" value="${state.tickerSpeed}" data-key="tickerSpeed" />
+        </div>
+
+        <div class="twk__row">
+          <label class="twk__toggle">
+            <input type="checkbox" data-key="asterisksSpin" ${state.asterisksSpin ? 'checked' : ''} />
+            <span>Asterischi rotanti</span>
+          </label>
+        </div>
+      </div>
+    `;
+    // events
+    host.querySelectorAll('.twk__pal').forEach(b => {
+      if (b.dataset.val === state.palette) b.setAttribute('aria-pressed','true');
+      b.addEventListener('click', () => {
+        host.querySelectorAll('.twk__pal').forEach(x => x.removeAttribute('aria-pressed'));
+        b.setAttribute('aria-pressed', 'true');
+        state.palette = b.dataset.val;
+        applyAll(); persist({ palette: state.palette });
+      });
+    });
+    host.querySelector('[data-key="tickerSpeed"]').addEventListener('input', (e) => {
+      state.tickerSpeed = +e.target.value;
+      document.getElementById('twkSpeedVal').textContent = state.tickerSpeed + 's';
+      applyAll(); persist({ tickerSpeed: state.tickerSpeed });
+    });
+    host.querySelector('[data-key="asterisksSpin"]').addEventListener('change', (e) => {
+      state.asterisksSpin = e.target.checked;
+      applyAll(); persist({ asterisksSpin: state.asterisksSpin });
+    });
+    host.querySelector('.twk__close').addEventListener('click', () => {
+      host.innerHTML = '';
+      window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+    });
+  }
+
+  // protocol: register listener BEFORE announcing availability
+  window.addEventListener('message', (e) => {
+    if (!e.data || !e.data.type) return;
+    if (e.data.type === '__activate_edit_mode')   buildUI();
+    if (e.data.type === '__deactivate_edit_mode') document.getElementById('tweaks-root').innerHTML = '';
+  });
+  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+})();
+</script>
+
+</body>
+</html>
