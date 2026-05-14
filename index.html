@@ -718,6 +718,13 @@ body::before {
   font-weight: 700;
 }
 .extra__dates ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .55rem; }
+.extra__dates-empty {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .82rem; letter-spacing: .25em; text-transform: uppercase;
+  color: var(--muted); margin: 0;
+  padding: .85rem 1rem;
+  border-left: 4px solid var(--line);
+}
 .extra__dates li {
   display: flex; gap: 1.2rem; align-items: baseline;
   padding: .85rem 1rem;
@@ -1082,13 +1089,13 @@ body::before {
       <div class="extra__dates">
         <h3>↘ Altre date · presentazioni libro</h3>
         <ul>
-          <li><span class="d">12.06.26</span><span class="p">Libreria <b>Verso</b>, Milano · ore 18:30</span></li>
-          <li><span class="d">28.06.26</span><span class="p"><b>Festivaletteratura</b>, Mantova · piazza Sordello, ore 19:00</span></li>
-          <li><span class="d">15.10.26</span><span class="p"><b>BookCity</b>, Milano · Castello Sforzesco</span></li>
+          <!-- Inserire qui le date reali quando disponibili, una per riga seguendo lo stesso pattern delle date principali della sezione DATE:
+               <li><span class="d">GG.MM.AA</span><span class="p">Luogo · dettagli</span></li> -->
         </ul>
+        <p class="extra__dates-empty">Date in fase di aggiornamento</p>
       </div>
 
-      <a class="btn btn--accent extra__buy" href="#" target="_blank" rel="noopener">Acquista il libro →</a>
+      <a class="btn btn--accent extra__buy" href="mailto:massimiliano.sonsogno@gmail.com?subject=Ordine%20libro%20Briscola%20chiamata">Acquista il libro →</a>
 
       <p class="extra__microbio">
         ↘ <b>Sonsogno scrittore</b> — Pubblica racconti su riviste che non leggete e una rubrica fissa su un giornale che non esiste. <em>Briscola chiamata</em> è il suo primo romanzo lungo. <b>Per le presentazioni, telefono o mail e pedalare !!</b>
