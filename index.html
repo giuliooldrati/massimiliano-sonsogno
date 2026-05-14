@@ -312,8 +312,10 @@ body::before {
   transition: all .2s ease;
 }
 .btn--accent { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.btn--outline-accent { background: transparent; color: var(--accent); border-color: var(--accent); }
 .btn:hover { background: var(--text); color: var(--bg); border-color: var(--text); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--accent); }
 .btn--accent:hover { background: var(--text); color: var(--bg); border-color: var(--text); box-shadow: 4px 4px 0 var(--accent-2); }
+.btn--outline-accent:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
 
 /* asterisk swirl bottom */
 .hero__footnote {
@@ -851,7 +853,7 @@ body::before {
     </p>
 
     <div class="hero__ctas">
-      <a href="#date" class="btn btn--accent">Prossimi live ↓</a>
+      <a href="#date" class="btn btn--outline-accent">Prossimi live ↓</a>
       <a href="#video" class="btn">▶ Guarda i video</a>
     </div>
   </div>
