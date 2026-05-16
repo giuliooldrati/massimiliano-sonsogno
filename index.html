@@ -190,6 +190,7 @@ body::before {
   min-height: 100vh;
   display: flex; flex-direction: column;
   padding: 1.6rem 1.6rem 0;
+  padding-inline: clamp(1rem, 4vw, 1.6rem);
   isolation: isolate;
   overflow: hidden;
   z-index: 2;
@@ -271,6 +272,8 @@ body::before {
   font-size: clamp(3.4rem, 12vw, 11.5rem);
   margin: 0;
   text-transform: uppercase;
+  overflow-wrap: break-word;
+  word-break: keep-all;
 }
 .hero__title .ast {
   color: var(--accent);
@@ -810,6 +813,9 @@ body::before {
 
   .section__head { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .section__head .meta { text-align: left; }
+}
+@media (max-width: 480px) {
+  .hero__title { font-size: clamp(1.8rem, 9vw, 3rem); }
 }
 
 /* Reduced motion */
