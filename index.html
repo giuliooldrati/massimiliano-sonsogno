@@ -439,8 +439,10 @@ body::before {
    ============================================================ */
 .video-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(1.2rem, 2.5vw, 2.4rem);
+  grid-template-columns: 1fr;
+  gap: clamp(3rem, 6vw, 4rem);
+  max-width: 860px;
+  margin-inline: auto;
 }
 .video-wrapper {
   position: relative;
@@ -802,7 +804,6 @@ body::before {
   .bio { grid-template-columns: 1fr; }
   .gallery { position: static; max-width: 460px; margin: 0 auto; }
 
-  .video-grid { grid-template-columns: 1fr; }
   .date-row { grid-template-columns: 1fr; gap: .4rem; padding: 1.2rem .6rem; }
   .date-row:hover { transform: none; padding-left: .6rem; }
   .tag { justify-self: start; }
@@ -948,6 +949,16 @@ body::before {
       </div>
       <div class="video-wrapper__caption">
         <span>Live ai Giardini Luzzati di Genova</span>
+        <span>YouTube</span>
+      </div>
+    </article>
+
+    <article class="video-wrapper">
+      <div class="video-wrapper__media">
+        <iframe src="https://www.youtube.com/embed/CMQjsqSLQ3A" title="Massimiliano Sonsogno — video 03" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <div class="video-wrapper__caption">
+        <span>Finale Open Mic dello Zelig · 2026</span>
         <span>YouTube</span>
       </div>
     </article>
